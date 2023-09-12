@@ -1,9 +1,9 @@
 const { exec } = require("child_process");
 export default function handler(req, res) {
-  console.log(req.body.data);
-  const { repo_loc, repo_name, archive_name, dest, passphrase } = req.body.data;
+  const {encryptionKey, name} = req.body.data
+  // const { repo_loc, repo_name, archive_name, dest, passphrase } = req.body.data;
   exec(
-    `bash ./scripts/borg_extract.sh ${repo_loc} ${repo_name} ${dest}  ${archive_name} ${passphrase}`,
+    `bash ./scripts/borg_extract.sh /home/sudhanshu backuprepo /home/sudhanshu/Downloads/restore ${name} ${encryptionKey}`,
     (err, stdout, stderr) => {
       // exec(`pwd`, (err,stdout,stderr) => {
       if (err) {

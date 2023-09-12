@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import axios from 'axios';
 export default function Restore() {
   const [formData, setFormData] = useState({
     name: '', 
@@ -73,6 +74,17 @@ export default function Restore() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    try {
+      axios
+        .post("/api/restrorepo", {
+          data: formData,
+        })
+        .then((res) => {
+          console.log(res);
+        });
+    } catch (err) {
+      console.log(err);
+    }
     console.log('Form Data:', formData);
   };
   return (

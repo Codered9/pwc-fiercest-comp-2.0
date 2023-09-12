@@ -20,7 +20,7 @@ if [[ ! -d "$REPO_LOCATION/$REPO_NAME" ]]; then
 fi
 
 # Extract the specified archive
-borg extract "$REPO_LOCATION/$REPO_NAME::$ARCHIVE_NAME" "$EXTRACT_LOC"
+borg extract "$REPO_LOCATION/$REPO_NAME::$ARCHIVE_NAME"
 
 # Check if the extraction was successful
 if [[ $? -eq 0 ]]; then

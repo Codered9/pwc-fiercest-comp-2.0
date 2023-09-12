@@ -27,12 +27,11 @@ export default function Welcome() {
   const header = {
     color : 'black',
     maxWidth: '500px', 
-    margin: '0 auto',
+    marginTop: 'auto',
     padding: '20px',
     border: '1px solid #ccc',
     borderRadius: '10px',
     boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
-
   }
 
   return (
@@ -40,7 +39,7 @@ export default function Welcome() {
       <div style={containerStyle}>
 
 
-            <h1 style={header}>Welcome</h1>
+            <h1 style={header}>Backup and Restore Solution</h1>
 
             <ul>
               <li>

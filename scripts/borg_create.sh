@@ -11,15 +11,16 @@ REPO_NAME="$2"
 export BORG_PASSPHRASE=$3
 SOURCE_NAME=$4
 ARCHIVE_NAME=$5
+N=$6
 # Check if the repository already exists
 if [[ -d "$REPO_LOCATION/$REPO_NAME" ]]; then
-  borg create "$REPO_LOCATION/$REPO_NAME::$ARCHIVE_NAME" "$SOURCE_NAME"
+  borg create --compression zlib,"$N" "$REPO_LOCATION/$REPO_NAME::$ARCHIVE_NAME" "$SOURCE_NAME"
   exit 1
 fi
 
 # Initialize the Borg repository
 borg init --encryption=repokey "$REPO_LOCATION/$REPO_NAME" 
-borg create "$REPO_LOCATION/$REPO_NAME::$ARCHIVE_NAME" "$SOURCE_NAME"
+borg create --compression zlib,"$N" "$REPO_LOCATION/$REPO_NAME::$ARCHIVE_NAME" "$SOURCE_NAME"
 # Check if the repository initialization was successful
 if [[ $? -eq 0 ]]; then
   echo "Borg repository '$REPO_NAME' created successfully at '$REPO_LOCATION' with passphrase encryption."

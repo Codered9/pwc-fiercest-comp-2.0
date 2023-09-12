@@ -1,7 +1,18 @@
+// import upload from "@/middlewares/multeraudio"
 const {exec} = require("child_process")
-export default function handler(req, res) {
-    const {repo_loc, repo_name , archive_name , source,  passphrase } = req.body.data
-    exec(`bash ./scripts/borg_create.sh ${repo_loc} ${repo_name} ${passphrase} ${source} ${archive_name}`, (err,stdout,stderr) => {
+let counter = 1
+export default async function handler(req, res) {
+    const data = req.body.data
+    console.log(data)
+
+    const repo_name  = data.name
+    const archive_name = data.name
+    const passphrase = data.encryptionKey
+    const compressionRatio = data.customRange3
+    const file = data.file
+    counter = counter +1
+    // const {repo_loc, repo_name , archive_name , source,  passphrase } = data
+    exec(`bash ./scripts/borg_create.sh /home/sudhanshu backuprepo ${passphrase} ${file} ${archive_name} ${compressionRatio}`, (err,stdout,stderr) => {
         if (err) {
             console.log(`error: ${err.message}`);
             res.status(500).json({error: stderr})
